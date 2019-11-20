@@ -20,6 +20,10 @@
 
   <link href="css/agency.css" rel="stylesheet">
   <link href="css/note.css" rel="stylesheet">
+
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-classic.css" />
+
 </head>
 
 <body id="page-top">
@@ -68,7 +72,16 @@
       <div class="row">
         <div class="col-lg-12 text-center">
           <h2 class="section-heading text-uppercase">Gary AI</h2>
-          <h4 class="section-subheading text-muted">The purpose of this site is to scale tremendeus value that Gary brings to the community using machine learning.<BR><BR>AI models were trained based on hundreds of hours of his publicly available videos, talks and podcasts.<BR>All of the samples below were created by AI.<BR><BR>Some of the samples might not make much sense, taken out of the context, might be funny, but also can provide scarily deep insights.<BR><BR>This site is not affiliated with Gary Vaynerchuck, do not represent his official thoughts or official recommendations.<BR><BR>This site and models were created only for fun and entertainment.</h4>
+          <p class="section-subheading text-muted">
+The purpose of this site is an attempt to replicate the perspective of a real person. Also, it is an attempt to scale up Gary Vee, which brings massive value to the community, using state of the art machine learning.
+<BR><BR>
+All models were trained based on hundreds of hours of his publicly available videos, talks, and podcasts. All of the sample quotes below are the output of such research.
+<BR><BR>
+Some of the samples might not make much sense or are funny. Some can provide scarily deep insights too.
+<BR><BR>
+This site is not affiliated with Gary Vaynerchuk and does not represent his official statements. The creation of this site was for education, fun, and entertainment. Enjoy!
+<BR><BR>
+</p>
         </div>
       </div>
     </div>
@@ -85,7 +98,7 @@
       </div>
       <BR>
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12" data-tilt>
           <div class="notepaper">
             <figure class="quote">
                 <blockquote class="curly-quotes" id="quote_output">
@@ -95,6 +108,7 @@
             </figure>
           </div>
         </div>
+       <div id='sharebuttons'></div>
       </div>
     </div>
   </section>
@@ -205,6 +219,8 @@
 
   <!-- Plugin JavaScript -->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
 
   <!-- Contact form JavaScript -->
   <script src="js/jqBootstrapValidation.js"></script>
@@ -214,14 +230,43 @@
   
   <script type="text/javascript" language="javascript">
     $(document).ready(function() { 
+//      $.ajax({
+//        url: "quote", 
+//        data: window.location.href,
+//        type: 'POST',
+//        success: function(result) {
+//              var data = $.parseJSON(result);
+//              $("#quote_output").html(data[1]);
+//              $("#quote_number").html(data[0]);
+//      }});
+
       $('#generate_quote').click(function(){
-          $.ajax({url: "quote", success: function(result) {
+          $.ajax({
+        url: "quote", 
+        data: window.location.href,
+        type: 'POST',
+        success: function(result) {
               var data = $.parseJSON(result);
               $("#quote_output").html(data[1]);
               $("#quote_number").html(data[0]);
           }});
       });
     });
+
+   $("#sharebuttons").jsSocials({
+      showCount: false,
+      showLabel: true,
+      shares: [
+          "email",
+          "twitter",
+          "facebook",
+          "linkedin",
+          { share: "pinterest", label: "Pin this" },
+          "stumbleupon",
+          "whatsapp"
+      ]
+   });
+
   </script>
   
 </body>
