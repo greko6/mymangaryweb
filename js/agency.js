@@ -40,3 +40,31 @@
   $(window).scroll(navbarCollapse);
 
 })(jQuery); // End of use strict
+
+$(document).ready(function() { 
+
+  $('#generate_quote').click(function(){
+      $.ajax({
+    url: "https://quotes.mymangary.com/quote", 
+    data: window.location.href,
+    type: 'POST',
+    success: function(result) {
+          var data = $.parseJSON(result);
+          $("#quote_output").html(data[1]);
+          $("#quote_number").html(data[0]);
+      }});
+  });
+});
+
+$("#sharebuttons").jsSocials({
+  showCount: false,
+  showLabel: true,
+  shares: [
+      "twitter",
+      "facebook",
+      "linkedin",
+      { share: "pinterest", label: "Pin this" },
+      "stumbleupon",
+      "whatsapp"
+  ]
+});
