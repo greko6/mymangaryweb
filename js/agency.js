@@ -68,3 +68,25 @@ $("#sharebuttons").jsSocials({
       "whatsapp"
   ]
 });
+
+function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+
+  var $tmp_quote = $(element).text().trim();
+  var $tmp_quote_number = $("#quote_number").text().trim();
+  var $tmp_together = "Quote: #" + $tmp_quote_number + " by Gary AI Vee: \"" + $tmp_quote + "\". Check out for more at: www.mymangary.com";
+  $temp.val($tmp_together).select();
+  document.execCommand("copy");
+  $temp.remove();
+}
+
+$('#copy_quote').click(function() {
+  copyToClipboard('#quote_output');
+  $(this).text("Copied!");
+  setTimeout(function(){ $("#copy_quote").text("Copy to the clipboard"); }, 2033);
+})
+
+
+$(this).val("Item Added");
+setTimeout(function(){ $("#btn").val("Add to Cart"); }, 2000);  
